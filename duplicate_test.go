@@ -51,20 +51,17 @@ func TestBcc(t *testing.T) {
 
 }
 
-// Bcc verifies that the recipient of the email is not duplicated in the bcc, & if it is, deletes it.xs
+// RemoveDuplicates verifies that the recipient of the email is not duplicated in the bcc, & if it is, deletes it.xs
 func RemoveDuplicates(toEmail string, bcc []string) []string {
-
+	newBcc := []string{}
 	for i, email := range bcc {
 		if toEmail == email {
-			fmt.Printf("The recipient's email,%v, is duplicated.", toEmail)
-			bcc[i] = bcc[len(bcc)-1]
-			bcc[len(bcc)-1] = ""
-			bcc = bcc[:len(bcc)-1]
-			fmt.Printf("Here's the new bcc list: %v\n", bcc)
-
+			fmt.Printf("\nThere is a duplicate email ---> %v", email)
+		} else {
+			newBcc = append(newBcc, bcc[i])
 		}
-
 	}
+	fmt.Printf("\n New BCC List ---> %v", newBcc)
+	return newBcc
 
-	return bcc
 }
