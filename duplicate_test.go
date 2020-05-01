@@ -38,6 +38,16 @@ func TestBcc(t *testing.T) {
 			email:    "lasttest@gmail.com",
 			expected: 0,
 		},
+		{
+			bcc:      []string{"1@gmail.com", "2@gmail.com", "3@gmail.com", "2@gmail.com"},
+			email:    "2@gmail.com",
+			expected: 2,
+		},
+		{
+			bcc:      []string{"4@gmail.com", "4@gmail.com", "3@gmail.com", "4@gmail.com"},
+			email:    "4@gmail.com",
+			expected: 1,
+		},
 	}
 
 	for _, tabletest := range tabletests {
